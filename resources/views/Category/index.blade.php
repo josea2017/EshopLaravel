@@ -16,8 +16,9 @@
                     <table class="table table-hover table-sm" style="text-align: center; margin-top: 0%;" border="1">
                          <thead class="table_head">
                             <tr>
-                              <th>NOMBRE</th>
                               <th>CATEGORIA ID</th>
+                              <th>PERTENECE</th>
+                              <th>NOMBRE</th>
                               <th>
                                 <a class="btn btn-success" name="categoria_nueva" href="">Categoria nueva</a>
                               </th>
@@ -26,7 +27,8 @@
                         <tbody>
                             @foreach ($categories as $category)
                                 <tr>
-                                    <td>{{$category->id}}</td>
+                                    <td>{{$category->category_id}}</td>
+                                    <td>{{$category->category_root_id}}</td>
                                     <td>{{$category->name}}</td>
                                 </tr>
                             @endforeach
