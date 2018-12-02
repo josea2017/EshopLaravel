@@ -1,7 +1,7 @@
 @section('title', '- Productos Crear')
 @extends('layouts.app')
-
 @section('content')
+<meta name="csrf" value="{{ csrf_token() }}">
 <div class="container">
     @if(\Session::has('fail'))
        <div class="alert alert-danger">
@@ -19,7 +19,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <form method="POST" action="{{ url('products') }}">
+                    <form method="POST" enctype="multipart/form-data" action="{{ url('products') }}">
                         {{csrf_field()}}
                         <table class="table table-hover table-sm" style="text-align: center; margin-top: 0%;" border="0">
                              <thead class="table_head">
@@ -48,7 +48,7 @@
                                     @endif
                                 </tr>
                                  <tr>
-                                <td>Imagen:</th><td><input id="image" type="text" class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}" name="image" style="width: 100%;" value="{{ old('image') }}" required autofocus></td>
+                                <td>Imagen:</th><td><input id="image" type="file" class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}" name="image" style="width: 100%;" value="{{ old('image') }}" required autofocus></td>
                                   @if ($errors->has('image'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('image') }}</strong>
@@ -70,13 +70,22 @@
                                     @endif
                                 </tr>
                                 <tr>
-                                  <td>ID categoría:</th><td><input id="id_category" type="text" class="form-control{{ $errors->has('id_category') ? ' is-invalid' : '' }}" name="id_category" style="width: 100%;" value="{{ old('id_category') }}" required autofocus></td>
-                                  @if ($errors->has('id_category'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('id_category') }}</strong>
-                                        </span>
-                                    @endif
+                                  <td>ID categoría:</td>
+                                  <td>
+                                      <select id="id_category" class="form-control{{ $errors->has('id_category') ? ' is-invalid' : '' }}" name="id_category" style="width: 100%;" value="{{ old('id_category') }}" required autofocus>
+                                          @foreach ($categories as $category)
+                                            <option value="{{$category->category_id}}">{{ $category->name }}</option>
+                                          @endforeach
+                                      </select>
+                                      @if ($errors->has('id_category'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('id_category') }}</strong>
+                                            </span>
+                                        @endif
+                                  </td>
                                 </tr>
+
+
                                 <tr>
                                   <td colspan="2">
                                     <button type="submit" class="btn btn-success">Guardar</button>

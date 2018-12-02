@@ -42,7 +42,7 @@
                                     <td>{{$product->id_product}}</td>
                                     <td>{{$product->name}}</td>
                                     <td>{{$product->description}}</td>
-                                    <td>{{$product->image}}</td>
+                                    <td><img src="images/{{$product->image}}"></td>
                                     <td>{{$product->stock}}</td>
                                     <td>{{$product->price}}</td>
                                     <td>{{$product->id_category}}</td>

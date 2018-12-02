@@ -17,11 +17,12 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('id_product')->unique()->nullable(false);
             $table->string('name');
-            $table->string('drescription');
-            $table->binary('image');
+            $table->string('description');
+            $table->string('image');
             $table->integer('stock');
             $table->double('price');
             $table->string('id_category')->nullable(false);
+            $table->timestamps();
         });
     }
 
