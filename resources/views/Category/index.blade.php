@@ -38,7 +38,6 @@
                                     <td>{{$category->category_root_id}}</td>
                                     <td>{{$category->name}}</td>
                                     <td>
-                                    <td>
                                           <a style="text-decoration: none;" class="btn btn-primary" href="categories/edit/{{$category->id}}">
                                                     Editar
                                          </a>

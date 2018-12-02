@@ -90,13 +90,12 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'category_id' => 'required', 
-            'category_root_id' => 'required',
             'name' => 'required'
         ]);
         $category= \App\Category::find($id);
-        $category->name=$request->get('name');
+        $category->name=$request->input('name');
         $category->save();
+        return redirect()->route('categories.index')->with('success', 'Data Updated'); 
         
     }
 

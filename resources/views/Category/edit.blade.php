@@ -6,12 +6,13 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <form method="POST" action="categories/update/{{ $category->id }}">
+                <form method="POST" action="{{action('CategoryController@edit', $category->id)}}">
+                    @csrf
                     <div class="card-header">Categorias editar</div>
                     <input type="" disabled="true" name="" value="{{$category->category_id}}">
                     <input type="" disabled="true" name="" value="{{$category->category_root_id}}">
-                    <input type="text" name="" value="{{$category->name}}">
-                    <a class="btn btn-success" type="submit" name="editar">Editar</a>
+                    <input type="text" name="name" value="{{$category->name}}">
+                    <button type="submit" class="btn btn-success" style="margin-left:38px">Editar</button>
                 </form>
             </div>
         </div>
