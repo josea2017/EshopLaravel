@@ -3,6 +3,11 @@
 
 @section('content')
 <div class="container">
+    @if(\Session::has('fail'))
+       <div class="alert alert-danger">
+            <p>{{ \Session::get('fail') }}</p>              
+       </div>
+    @endif
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -13,12 +18,6 @@
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif
-                   
-                    @if(\Session::has('fail'))
-                    <div class="alert alert-danger">
-                        <p>{{ \Session::get('fail') }}</p>              
-                    </div>
                     @endif
                     <form method="POST" action="{{ url('categories') }}">
                         {{csrf_field()}}

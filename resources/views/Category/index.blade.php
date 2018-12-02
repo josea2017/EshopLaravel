@@ -3,6 +3,11 @@
 
 @section('content')
 <div class="container">
+   @if(\Session::has('success'))
+      <div class="alert alert-success">
+           <p>{{ \Session::get('success') }}</p>              
+      </div>
+   @endif
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -14,11 +19,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                     @if(\Session::has('success'))
-                    <div class="alert alert-success">
-                        <p>{{ \Session::get('success') }}</p>              
-                    </div>
-                    @endif
+                   
                     <table class="table table-hover table-sm" style="text-align: center; margin-top: 0%;" border="1">
                          <thead class="table_head">
                             <tr>
@@ -36,12 +37,17 @@
                                     <td>{{$category->category_id}}</td>
                                     <td>{{$category->category_root_id}}</td>
                                     <td>{{$category->name}}</td>
-                                    <td> <a style="text-decoration: none;" class="btn btn-primary" href="{{ url('#')        }}">
+                                    <td>
+                                    <td>
+                                          <a style="text-decoration: none;" class="btn btn-primary" href="categories/edit/{{$category->id}}">
                                                     Editar
                                          </a>
-                                         <a style="text-decoration: none;" class="btn btn-danger" href="{{ url('#')   }}">
+
+                                          <a style="text-decoration: none;" onclick="return confirm('Do you really want to delete?');"  class="btn btn-danger" href="categories/delete/{{ $category->id }}">
+
                                                     Eliminar
                                          </a>
+                                         
                                     </td>
                                 </tr>
                             @endforeach
