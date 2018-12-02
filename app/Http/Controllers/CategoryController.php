@@ -53,6 +53,24 @@ class CategoryController extends Controller
         $category->updated_at = $date;
         $category->save();
         */
+        $this->validate($request, [
+            'category_id' => 'required', 
+            'category_root_id' => 'required',
+            'name' => 'required'
+        ]);
+        $category = new Category([
+            'category_id' => $request->get('category_id'),
+            'category_root_id' => $request->get('category_root_id'),
+            'name' => $request->get('name')
+        ]);
+        try {
+            $category->save();
+        } catch (Exception $e) {
+            return redirect()->route('categories.create')->with('fail', 'Duplicate data');  
+        }
+        
+        return redirect()->route('categories.create')->with('success', 'Data Added'); 
+
         
     }
 

@@ -14,7 +14,19 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <form action="store" method="POST">
+                   
+                    @if(\Session::has('fail'))
+                    <div class="alert alert-danger">
+                        <p>{{ \Session::get('fail') }}</p>              
+                    </div>
+                    @endif
+                    @if(\Session::has('success'))
+                    <div class="alert alert-success">
+                        <p>{{ \Session::get('success') }}</p>              
+                    </div>
+                    @endif
+                    <form method="POST" action="{{ url('categories') }}">
+                        {{csrf_field()}}
                         <table class="table table-hover table-sm" style="text-align: center; margin-top: 0%;" border="0">
                              <thead class="table_head">
                                 <tr>
