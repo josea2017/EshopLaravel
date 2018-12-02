@@ -14,6 +14,11 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                     @if(\Session::has('success'))
+                    <div class="alert alert-success">
+                        <p>{{ \Session::get('success') }}</p>              
+                    </div>
+                    @endif
                     <table class="table table-hover table-sm" style="text-align: center; margin-top: 0%;" border="1">
                          <thead class="table_head">
                             <tr>

@@ -65,11 +65,11 @@ class CategoryController extends Controller
         ]);
         try {
             $category->save();
-        } catch (Exception $e) {
+        } catch (\Illuminate\Database\QueryException $e) {
             return redirect()->route('categories.create')->with('fail', 'Duplicate data');  
         }
         
-        return redirect()->route('categories.create')->with('success', 'Data Added'); 
+        return redirect()->route('categories.index')->with('success', 'Data Added'); 
 
         
     }
