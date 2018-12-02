@@ -1,3 +1,4 @@
+@section('title', '- Categorias')
 @extends('layouts.app')
 
 @section('content')
@@ -17,10 +18,10 @@
                          <thead class="table_head">
                             <tr>
                               <th>CATEGORIA ID</th>
-                              <th>PERTENECE</th>
+                              <th>RAÍZ</th>
                               <th>NOMBRE</th>
                               <th>
-                                <a class="btn btn-success" name="categoria_nueva" href="">Categoria nueva</a>
+                                <a class="btn btn-success" name="categoria_nueva" href="{{ url('/categories/create') }}">Categoria nueva</a>
                               </th>
                             </tr>
                         </thead>
@@ -30,6 +31,13 @@
                                     <td>{{$category->category_id}}</td>
                                     <td>{{$category->category_root_id}}</td>
                                     <td>{{$category->name}}</td>
+                                    <td> <a style="text-decoration: none;" class="btn btn-primary" href="{{ url('#')        }}">
+                                                    Editar
+                                         </a>
+                                         <a style="text-decoration: none;" class="btn btn-danger" href="{{ url('#')   }}">
+                                                    Eliminar
+                                         </a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
