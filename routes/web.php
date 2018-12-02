@@ -19,3 +19,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('categories', 'CategoryController');
+Route::get('categories/delete/{id}','CategoryController@destroy');
