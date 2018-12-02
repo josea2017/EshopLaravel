@@ -1,4 +1,4 @@
-@section('title', '- Categorias')
+@section('title', '- Productos')
 @extends('layouts.app')
 
 @section('content')
@@ -9,9 +9,9 @@
       </div>
    @endif
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Categorias</div>
+                <div class="card-header">Productos</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -23,26 +23,34 @@
                     <table class="table table-hover table-sm" style="text-align: center; margin-top: 0%;" border="1">
                          <thead class="table_head">
                             <tr>
-                              <th>CATEGORIA ID</th>
-                              <th>RAÍZ</th>
+                              <th>ID PRODUCTO</th>
                               <th>NOMBRE</th>
+                              <th>DESCRIPCIÓN</th>
+                              <th>IMAGEN</th>
+                              <th>STOCK</th>
+                              <th>PRECIO</th>
+                              <th>ID CATEGORIA</th>
                               <th>
-                                <a class="btn btn-success" name="categoria_nueva" href="{{ url('/categories/create') }}">Categoria nueva</a>
+                                <a class="btn btn-success" name="categoria_nueva" href="{{ url('/products/create') }}">Producto nuevo</a>
                               </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($categories as $category)
+
+                          @foreach ($products as $product)
                                 <tr>
-                                    <td>{{$category->category_id}}</td>
-                                    <td>{{$category->category_root_id}}</td>
-                                    <td>{{$category->name}}</td>
+                                    <td>{{$product->id_product}}</td>
+                                    <td>{{$product->name}}</td>
+                                    <td>{{$product->description}}</td>
+                                    <td><img src="images/{{$product->image}}"></td>
+                                    <td>{{$product->stock}}</td>
+                                    <td>{{$product->price}}</td>
+                                    <td>{{$product->id_category}}</td>
                                     <td>
-                                          <a style="text-decoration: none;" class="btn btn-primary" href="categories/edit/{{$category->id}}">
+                                          <a style="text-decoration: none;" class="btn btn-primary" href="#">
                                                     Editar
                                          </a>
-
-                                          <a style="text-decoration: none;" onclick="return confirm('Do you really want to delete?');"  class="btn btn-danger" href="categories/delete/{{ $category->id }}">
+                                          <a style="text-decoration: none;" onclick="return confirm('Do you really want to delete?');"  class="btn btn-danger" href="#">
 
                                                     Eliminar
                                          </a>
@@ -50,6 +58,7 @@
                                     </td>
                                 </tr>
                             @endforeach
+
                         </tbody>
                     </table>
                 </div>
