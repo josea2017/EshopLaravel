@@ -105,7 +105,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = \App\Product::find($id);
+        return view('Product/edit',compact('product','id'));
     }
 
     /**
@@ -117,7 +118,19 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'stock' => 'required',
+            'price' => 'required'
+        ]);
+        $product= \App\Product::find($id);
+        $product->name=$request->input('name');
+        $product->description=$request->input('description');
+        $product->stock=$request->input('stock');
+        $product->price=$request->input('price');
+        $product->save();
+        return redirect()->route('products.index')->with('success', 'Data Updated'); 
     }
 
     /**
