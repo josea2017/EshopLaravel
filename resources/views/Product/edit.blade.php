@@ -13,6 +13,11 @@
                      <table class="table table-hover table-sm" style="text-align: center; margin-top: 0%;" border="0">
                              <thead class="table_head">
                                 <tr>
+                                  <td colspan="2">
+                                    <img src="/.../../images/{{$product->image}}">
+                                  </td>
+                                </tr>
+                                <tr>
                                   <td>ID producto:</td><td><input type="text" disabled="true" class="form-control{{ $errors->has('$product->id_product') ? ' is-invalid' : '' }}" value="{{$product->id_product}}"></td>
                                 </tr>
                                 <tr>
