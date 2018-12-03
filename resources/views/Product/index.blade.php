@@ -47,7 +47,7 @@
                                     <td>{{$product->price}}</td>
                                     <td>{{$product->id_category}}</td>
                                     <td>
-                                          <a style="text-decoration: none;" class="btn btn-primary" href="#">
+                                          <a style="text-decoration: none;" class="btn btn-primary" href="products/edit/{{$product->id}}">
                                                     Editar
                                          </a>
                                           <a style="text-decoration: none;" onclick="return confirm('Do you really want to delete?');"  class="btn btn-danger" href="#">
