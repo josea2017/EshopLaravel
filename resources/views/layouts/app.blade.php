@@ -33,6 +33,9 @@
                         <a class="nav-link" style="text-decoration: none;" href="{{ url('/home') }}">
                             Home
                         </a>
+                        <a class="nav-link" style="text-decoration: none;" href="{{ url('catalogs') }}">
+                            Catálogo
+                        </a>
                         <a class="nav-link" style="text-decoration: none;" href="{{ url('/categories') }}">
                             Categorias
                         </a>
