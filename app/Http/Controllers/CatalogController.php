@@ -16,7 +16,9 @@ class CatalogController extends Controller
      */
     public function index()
     {
-        return view('Catalog/index', ['categories' => Category::all()]);
+        return view('Catalog/index', ['categories' => Category::orderBy('id', 'asc')->get()]);
+        //return view('Catalog/index', ['categories' => Category::all()]);
+        //return view('Category/index', ['categories' => Category::orderBy('id', 'asc')->get()]);
     }
 
     /**
@@ -96,7 +98,7 @@ class CatalogController extends Controller
         //['products' => Product::all()]
        // return view('Catalog/products_list_detail', ['products' => DB::table('products')->where('id_category', $id)]);
         //return view('Catalog/products_list_detail', ['products' => DB::table('products')->select('');
-        return view('Catalog/products_list_detail', ['products' => DB::table('products')->where('id_category', $id)->get()]);
+        return view('Catalog/products_list_detail', ['products' => DB::table('products')->where('id_category', $id)->orderBy('id')->get()]);
     }
 
     /**
