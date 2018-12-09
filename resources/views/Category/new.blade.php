@@ -49,10 +49,9 @@
                                 </tr>
                                 <tr>
                                   <td colspan="2">
-                                    <button type="submit" class="btn btn-primary">
-                                        G
+                                    <button type="submit" class="btn btn-success">
+                                        Guardar
                                     </button>
-                                    <a class="btn btn-success" type="submit" name="categoria_nueva">Guardar</a>
                                     <a class="btn btn-danger" name="cancelar" href="{{ url('/categories') }}">Cancelar</a>
                                   </td>
                                 </tr>

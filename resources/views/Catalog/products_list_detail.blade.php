@@ -1,4 +1,4 @@
-@section('title', '- Productos')
+@section('title', '- Catalogo Productos')
 @extends('layouts.app')
 
 @section('content')
@@ -11,7 +11,13 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Productos</div>
+                <div class="card-header">Catálogo Productos
+                  <div style="display: inline-block; float: right;">
+                    <a style="text-decoration: none;" class="btn btn-secondary" href="../">
+                       <== Atrás
+                    </a>
+                  </div>
+                </div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -30,9 +36,7 @@
                               <th>STOCK</th>
                               <th>PRECIO</th>
                               <th>ID CATEGORIA</th>
-                              <th>
-                                <a class="btn btn-success" name="categoria_nueva" href="{{ url('/products/create') }}">Producto nuevo</a>
-                              </th>
+                              <th>DETALLE</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,16 +46,13 @@
                                     <td>{{$product->id_product}}</td>
                                     <td>{{$product->name}}</td>
                                     <td>{{$product->description}}</td>
-                                    <td><img src="images/{{$product->image}}"></td>
+                                    <td><img src="/.../../images/{{$product->image}}"></td>
                                     <td>{{$product->stock}}</td>
                                     <td>{{$product->price}}</td>
                                     <td>{{$product->id_category}}</td>
                                     <td>
-                                          <a style="text-decoration: none;" class="btn btn-primary" href="products/edit/{{$product->id}}">
-                                                    Editar
-                                         </a>
-                                          <a style="text-decoration: none;" onclick="return confirm('Do you really want to delete?');"  class="btn btn-danger" href="products/delete/{{ $product->id }}">
-                                                    Eliminar
+                                          <a style="text-decoration: none;" class="btn btn-primary" href="/../../catalogs/product_detail/{{$product->id_product}}">
+                                                    Detalle
                                          </a>
                                     </td>
                                 </tr>

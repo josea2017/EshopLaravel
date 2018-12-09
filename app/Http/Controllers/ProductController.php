@@ -24,7 +24,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('Product/index', ['products' => Product::all()]);
+        return view('Product/index', ['products' => Product::orderBy('id', 'asc')->get()]);
+        //return view('Product/index', ['products' => Product::all()]);
+        //return view('Category/index', ['categories' => Category::orderBy('id', 'asc')->get()]);
     }
 
     /**
@@ -141,6 +143,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = \App\Product::find($id);
+        $product->delete();
+        return redirect()->route('products.index')->with('success', 'Information has been deleted');
     }
 }

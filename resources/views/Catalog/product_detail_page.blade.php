@@ -1,4 +1,4 @@
-@section('title', '- Productos Editar')
+@section('title', '- Catologo Detalle')
 @extends('layouts.app')
 
 @section('content')
@@ -6,13 +6,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <form method="POST" action="{{action('ProductController@edit', $product->id)}}">
+                <form method="POST" action="#">
                     @csrf
-                    <div class="card-header">Productos editar</div>
+                    <div class="card-header">Catálogo detalle del producto</div>
 
                      <table class="table table-hover table-sm" style="text-align: center; margin-top: 0%;" border="0">
                              <thead class="table_head">
                                 <tr>
+                                  
                                   <td colspan="2">
                                     <img src="/.../../images/{{$product->image}}">
                                   </td>
@@ -53,8 +54,9 @@
                                 </tr>
                                 <tr>
                                   <td colspan="2">
-                                    <button type="submit" class="btn btn-primary" style="margin-left:38px">Editar</button>
-                                    <a class="btn btn-danger" name="cancelar" href="{{ url('products') }}">Cancelar</a>
+                                    <button type="submit" class="btn btn-success" style="margin-left:38px">Agregar</button>
+                                    <a class="btn btn-warning" name="nuevo" href="#">Carro nuevo</a>
+                                    <a class="btn btn-danger" name="nuevo" href="{{ URL::previous() }}">Cancelar</a>
                                   </td>
                                 </tr>
                             </thead>
