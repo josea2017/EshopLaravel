@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <form method="POST" action="#">
+                <form method="POST" action="{{action('CarController@agregar', [Auth::user()->email, $product->id_product])}}">
                     @csrf
                     <div class="card-header">Catálogo detalle del producto</div>
 
@@ -54,7 +54,7 @@
                                 </tr>
                                 <tr>
                                   <td colspan="2">
-                                    <button type="submit" class="btn btn-success" style="margin-left:38px">Agregar</button>
+                                    <button type="submit" class="btn btn-success" name="agregar_al_carro" value="agregar_al_carro">Agregar al carro</button>
                                     <a class="btn btn-warning" name="nuevo" href="#">Carro nuevo</a>
                                     <a class="btn btn-danger" name="nuevo" href="{{ URL::previous() }}">Cancelar</a>
                                   </td>

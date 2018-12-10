@@ -16,10 +16,11 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('categories', 'CategoryController');
 Route::resource('products', 'ProductController');
+Route::resource('cars', 'CarController');
+Route::post('cars/agregar/{id_user}/{id_product}','CarController@agregar');
 Route::get('products/edit/{id}','ProductController@edit');
 Route::post('products/edit/{id}','ProductController@update');
 Route::get('products/delete/{id}','ProductController@destroy');
