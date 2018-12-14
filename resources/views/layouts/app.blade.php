@@ -30,6 +30,11 @@
                             E-Shop
                     </a>
                     <ul class="navbar-nav ml-auto">
+                        <div>
+                            <a href="{{ url('/charges') }}">
+                                <img style="width: 50px; height: 50px;" src="/.../../app_images/carro_compras.svg">
+                            </a>
+                        </div>
                         <a class="nav-link" style="text-decoration: none;" href="{{ url('/home') }}">
                             Home
                         </a>

@@ -20,6 +20,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('categories', 'CategoryController');
 Route::resource('products', 'ProductController');
 Route::resource('cars', 'CarController');
+Route::resource('charges', 'ChargeController');
 Route::post('cars/agregar/{id_user}/{id_product}','CarController@agregar');
 Route::get('products/edit/{id}','ProductController@edit');
 Route::post('products/edit/{id}','ProductController@update');
