@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/bootstrap-formhelpers-phone.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -43,12 +44,14 @@
                             <a class="nav-link" style="text-decoration: none;" href="{{ url('catalogs') }}">
                                 Catálogo
                             </a>
-                            <a class="nav-link" style="text-decoration: none;" href="{{ url('/categories') }}">
-                                Categorias
-                            </a>
-                            <a class="nav-link" style="text-decoration: none;" href="{{ url('/products') }}">
-                                Productos
-                            </a>
+                            @can('view', Auth::user())
+                                <a class="nav-link" style="text-decoration: none;" href="{{ url('/categories') }}">
+                                    Categorias
+                                </a>
+                                <a class="nav-link" style="text-decoration: none;" href="{{ url('/products') }}">
+                                    Productos
+                                </a>
+                            @endcan
                         @else
 
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
