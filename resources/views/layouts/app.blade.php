@@ -30,26 +30,31 @@
                             E-Shop
                     </a>
                     <ul class="navbar-nav ml-auto">
-                        <div>
-                            <a href="{{ url('/charges') }}">
-                                <img style="width: 50px; height: 50px;" src="/.../../app_images/carro_compras.svg">
+
+                        @if (Auth::check())
+                            <div>
+                                <a href="/../charges/show_charge_user/{{ Auth::user()->email }}">
+                                    <img style="width: 50px; height: 50px;" src="/.../../app_images/carro_compras.svg">
+                                </a>
+                            </div>
+                            <a class="nav-link" style="text-decoration: none;" href="{{ url('/home') }}">
+                                Home
                             </a>
-                        </div>
-                        <a class="nav-link" style="text-decoration: none;" href="{{ url('/home') }}">
-                            Home
-                        </a>
-                        <a class="nav-link" style="text-decoration: none;" href="{{ url('catalogs') }}">
-                            Catálogo
-                        </a>
-                        <a class="nav-link" style="text-decoration: none;" href="{{ url('/categories') }}">
-                            Categorias
-                        </a>
-                        <a class="nav-link" style="text-decoration: none;" href="{{ url('/products') }}">
-                            Productos
-                        </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
+                            <a class="nav-link" style="text-decoration: none;" href="{{ url('catalogs') }}">
+                                Catálogo
+                            </a>
+                            <a class="nav-link" style="text-decoration: none;" href="{{ url('/categories') }}">
+                                Categorias
+                            </a>
+                            <a class="nav-link" style="text-decoration: none;" href="{{ url('/products') }}">
+                                Productos
+                            </a>
+                        @else
+
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        @endif
                     </ul>
                 </div>
                    
