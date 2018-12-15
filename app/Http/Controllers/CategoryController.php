@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\User;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
+
+
 
 class CategoryController extends Controller
 {
@@ -26,6 +30,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $this->authorize('view', User::class);
         return view('Category/index', ['categories' => Category::orderBy('id', 'asc')->get()]);
         //return view('Category/index', ['categories' => Category::all()]);
     }
@@ -37,6 +42,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', User::class);
         return view('Category/new');
     }
 
@@ -48,6 +54,7 @@ class CategoryController extends Controller
      */
     public function store(Request  $request)
     {
+        $this->authorize('view', User::class);
         $this->validate($request, [
             'category_id' => 'required', 
             'category_root_id' => 'required',
@@ -88,6 +95,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('view', User::class);
         $category = \App\Category::find($id);
         return view('Category/edit',compact('category','id'));
     }
@@ -101,6 +109,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('view', User::class);
         $this->validate($request, [
             'name' => 'required'
         ]);
@@ -119,6 +128,7 @@ class CategoryController extends Controller
      */
      public function destroy($id)
     {
+        $this->authorize('view', User::class);
         $category = \App\Category::find($id);
         $category->delete();
         return redirect()->route('categories.index')->with('success', 'Information has been deleted'); 

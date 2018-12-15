@@ -12,6 +12,7 @@ use Image;
 ///////////////////////
 use Illuminate\Http\Request;
 use App\Product;
+use App\User;
 use App\Category;
 use Illuminate\Support\Facades\Input;
 
@@ -34,6 +35,7 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $this->authorize('view', User::class);
         return view('Product/index', ['products' => Product::orderBy('id', 'asc')->get()]);
         //return view('Product/index', ['products' => Product::all()]);
         //return view('Category/index', ['categories' => Category::orderBy('id', 'asc')->get()]);
@@ -46,6 +48,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $this->authorize('view', User::class);
         return view('Product/new', ['categories' => Category::all()]);
     }
 
@@ -58,6 +61,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
+        $this->authorize('view', User::class);
         $this->validate($request, [
             'id_product' => 'required', 
             'name' => 'required',
@@ -117,6 +121,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('view', User::class);
         $product = \App\Product::find($id);
         return view('Product/edit',compact('product','id'));
     }
@@ -130,6 +135,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('view', User::class);
         $this->validate($request, [
             'name' => 'required',
             'description' => 'required',
@@ -153,6 +159,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('view', User::class);
         $product = \App\Product::find($id);
         $product->delete();
         return redirect()->route('products.index')->with('success', 'Information has been deleted');
