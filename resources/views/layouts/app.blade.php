@@ -31,7 +31,7 @@
                     </a>
                     <ul class="navbar-nav ml-auto">
                         <div>
-                            <a href="{{ url('/charges') }}">
+                            <a href="/../charges/show_charge_user/{{ Auth::user()->email }}">
                                 <img style="width: 50px; height: 50px;" src="/.../../app_images/carro_compras.svg">
                             </a>
                         </div>

@@ -34,7 +34,21 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                          @foreach ($products as $product)
+                                <tr>
+                                    <td>{{$product->id_product}}</td>
+                                    <td>{{$product->name}}</td>
+                                    <td>{{$product->description}}</td>
+                                    <td><img src="/.../../images/{{$product->image}}"></td>
+                                    <td>{{$product->price}}</td>
+                                    <td>
+                                          <a style="text-decoration: none;" class="btn btn-danger" href="/charges/delete/{{$product->id_product}}">
+                                              Eliminar
+                                         </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                  
                           
                         </tbody>
                     </table>
