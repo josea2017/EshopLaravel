@@ -29,7 +29,7 @@
                               <th>IMAGEN</th>
                               <th>PRECIO</th>
                               <th>
-                                <a class="btn btn-success" name="generar_orden" href="#">Generar orden</a>
+                                <a class="btn btn-success" name="generar_orden" href="/orders/generateOrder/{{Auth::user()->email}}">Generar orden</a>
                               </th>
                             </tr>
                         </thead>

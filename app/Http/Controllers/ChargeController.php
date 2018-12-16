@@ -105,10 +105,14 @@ class ChargeController extends Controller
      */
     public function destroy($id_product)
     {
-        //\App\Charge::onlyTrashed()->where('id_product', $id_product);
-        //DB::table('charges')->where('id_product', $id_product)->delete();
-        DB::table('charges')->where('id_product', $id_product)->delete();
+        /*
+                DB::table('connection_requests')
+                  ->where(['user_id'=>$user->id, 'selected_user_id'=>$id])
+                  ->orWhere(['user_id'=>$id, 'selected_user_id'=>$user->id])
+                  ->delete();
+        */
         $user = \Auth::user()->email;
+        DB::table('charges')->where('id_product', $id_product)->where('id_user', $user)->delete();
         return $this->show_charge_user($user);
     }
 
@@ -123,6 +127,28 @@ class ChargeController extends Controller
         $charges = null;
         $productos_en_carro = array();
         $charges = DB::table('charges')->where('id_user', $id_user)->orderBy('id')->get();
+
+        if($charges != null)
+        {
+            $max = sizeof($charges);
+            for ($i=0; $i < $max; $i++) { 
+                $id_product = $charges[$i]->id_product;
+                $product = DB::table('products')->where('id_product', $id_product)->get()->first();
+            array_push($productos_en_carro, $product);
+            }
+           
+        }
+
+        return view('Charge/index', ['products' => $productos_en_carro]);
+    }
+
+
+    public function show_charge_success()
+    {
+        $user = \Auth::user()->email;
+        $productos_en_carro = array();
+        $charges = null;
+        $charges = DB::table('charges')->where('id_user', $user)->orderBy('id')->get();
 
         if($charges != null)
         {

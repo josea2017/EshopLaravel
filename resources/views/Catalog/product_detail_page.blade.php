@@ -55,7 +55,9 @@
                                 <tr>
                                   <td colspan="2">
                                     <button type="submit" class="btn btn-success" name="agregar_al_carro" value="agregar_al_carro">Agregar al carro</button>
-                                    <a class="btn btn-warning" name="nuevo" href="#">Carro nuevo</a>
+
+                                    <a class="btn btn-warning" name="nuevo" href="/../cars/new/{{Auth::user()->email}}">Carro nuevo</a>
+
                                     <a class="btn btn-danger" name="nuevo" href="{{ URL::previous() }}">Cancelar</a>
                                   </td>
                                 </tr>
