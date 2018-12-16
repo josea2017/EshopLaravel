@@ -1,7 +1,14 @@
 @section('title', '- Catologo Detalle')
 @extends('layouts.app')
-
 @section('content')
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<div id="demo">
+   <p>The initial text</p>
+</div>
+
+
 
 <div class="container">
     <div class="row justify-content-center">
@@ -9,8 +16,9 @@
             <div class="card">
                 <form method="POST" action="{{action('CarController@agregar', [Auth::user()->email, $product->id_product])}}">
                     @csrf
-                    <div class="card-header">Catálogo detalle del producto</div>
-
+                    <div class="card-header">Catálogo detalle del producto 
+                      <div style="float: right;">{{$product->price}}</div>
+                    </div>
                      <table class="table table-hover table-sm" style="text-align: center; margin-top: 0%;" border="0">
                              <thead class="table_head">
                                 <tr>
@@ -98,4 +106,25 @@ $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
 });
 </script>
+
+<script>
+$(document).ready(function(){
+  var quantity = $('#quantity').val();
+  $('#demo').text(quantity);
+  /*
+
+        $('#p_first').keyup(function(event){
+        if(isNaN(String.fromCharCode(event.which))){
+            var value = $(this).val();
+
+            $(this).val(value.substr(0,value.length-1));
+        }
+
+            var quantity = $('#quantity').val();
+            $('#demo').text(quantity);
+  */
+});
+</script>
+
+
 @endsection

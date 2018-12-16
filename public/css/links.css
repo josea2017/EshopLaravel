@@ -1,0 +1,8 @@
+li a{
+    color:#A60500;
+}
+
+li a:hover{
+    color:#640200;
+    background-color:#000000;
+}

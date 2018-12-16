@@ -157,6 +157,20 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function delete($id)
+    {
+        $this->authorize('view', User::class);
+        $product = \App\Product::find($id);
+        return view('Product/delete', ['product' => $product]);
+        
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         $this->authorize('view', User::class);

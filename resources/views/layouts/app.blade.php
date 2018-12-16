@@ -16,6 +16,7 @@
     <script src="{{ asset('js/bootstrap.min.js') }}" ></script>
 
     <!-- Fonts -->
+    <link rel="stylesheet" type="text/css" href="/.../../public/css/links.css">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
@@ -32,17 +33,19 @@
                     <a class="navbar-brand" href="{{ url('#') }}">
                             E-Shop
                     </a>
+                    
                     <ul class="navbar-nav ml-auto">
-
                         @if (Auth::check())
                             <div>
                                 <a href="/../charges/show_charge_user/{{ Auth::user()->email }}">
                                     <img style="width: 50px; height: 50px;" src="/.../../app_images/carro_compras.svg">
                                 </a>
                             </div>
-                            <a class="nav-link" style="text-decoration: none;" href="{{ url('/home') }}">
+        
+                             <a class="nav-link" style="text-decoration: none;" href="{{ url('/home') }}">
                                 Home
                             </a>
+                    
                              <a class="nav-link" style="text-decoration: none;" href="{{ url('/orders') }}">
                                 Ordenes
                             </a>

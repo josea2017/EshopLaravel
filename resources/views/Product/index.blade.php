@@ -50,7 +50,7 @@
                                           <a style="text-decoration: none;" class="btn btn-primary" href="products/edit/{{$product->id}}">
                                                     Editar
                                          </a>
-                                          <a style="text-decoration: none;" onclick="return confirm('Do you really want to delete?');"  class="btn btn-danger" href="products/delete/{{ $product->id }}">
+                                          <a style="text-decoration: none;" class="btn btn-danger" href="products/delete/{{ $product->id }}">
                                                     Eliminar
                                          </a>
                                     </td>

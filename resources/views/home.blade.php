@@ -34,24 +34,26 @@
                             </thead>
                         </table>
                          <h5>Artículos adquiridos</h5>
-                         <table class="table table-hover table-sm" style="text-align: center; margin-top: 5%;" border="0">
-                            <thead class="table_head">
-                            <tr>
-                              <th>NOMBRE</th>
-                              <th>IMAGEN</th>
-                              <th>PRECIO</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                          @foreach ($productsClient as $product)
+                         @if(!empty($product))
+                             <table class="table table-hover table-sm" style="text-align: center; margin-top: 5%;" border="0">
+                                <thead class="table_head">
                                 <tr>
-                                    <td>{{$product->name}}</td>
-                                    <td><img src="images/{{$product->image}}"></td>
-                                    <td>{{$product->price}}</td>
+                                  <th>NOMBRE</th>
+                                  <th>IMAGEN</th>
+                                  <th>PRECIO</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                        </table>
+                            </thead>
+                            <tbody>
+                              @foreach ($productsClient as $product)
+                                    <tr>
+                                        <td>{{$product->name}}</td>
+                                        <td><img src="images/{{$product->image}}"></td>
+                                        <td>{{$product->price}}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                            </table>
+                         @endif
                     @endcan
                     @can('viewClientHome', Auth::user())
                         <table class="table table-hover table-sm" style="text-align: center; margin-top: 0%;" border="0">
@@ -67,24 +69,26 @@
                             </thead>
                         </table>
                         <h5>Artículos adquiridos</h5>
-                         <table class="table table-hover table-sm" style="text-align: center; margin-top: 5%;" border="0">
-                            <thead class="table_head">
-                            <tr>
-                              <th>NOMBRE</th>
-                              <th>IMAGEN</th>
-                              <th>PRECIO</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                          @foreach ($productsClient as $product)
-                                <tr>
-                                    <td>{{$product->name}}</td>
-                                    <td><img src="images/{{$product->image}}"></td>
-                                    <td>{{$product->price}}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                        </table>
+                        @if(!empty($product))
+                           <table class="table table-hover table-sm" style="text-align: center; margin-top: 5%;" border="0">
+                              <thead class="table_head">
+                              <tr>
+                                <th>NOMBRE</th>
+                                <th>IMAGEN</th>
+                                <th>PRECIO</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            @foreach ($productsClient as $product)
+                                  <tr>
+                                      <td>{{$product->name}}</td>
+                                      <td><img src="images/{{$product->image}}"></td>
+                                      <td>{{$product->price}}</td>
+                                  </tr>
+                              @endforeach
+                          </tbody>
+                          </table>
+                        @endif
                     @endcan
                 </div>
             </div>

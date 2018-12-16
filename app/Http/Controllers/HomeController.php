@@ -31,15 +31,13 @@ class HomeController extends Controller
         $users = DB::table('users')->get();
         $cantClients =  sizeof($users);
         $orders = DB::table('orders')->get();
-        $cantSaleProducts =  sizeof($orders);
-        $totalSales = DB::table('orders')->sum('price_product');
-
+        $cantSaleProducts =  DB::table('orders')->sum('quantity');
+        $totalSales = DB::table('orders')->sum('price_total');
         /////// Datos para usuarios clientes //////
         $user = \Auth::user()->email;
         $orders = DB::table('orders')->where('id_user', $user)->get();
-        $totalProductsClient = sizeof($orders);
-        $totalSalesClient = DB::table('orders')->where('id_user', $user)->sum('price_product');
-
+        $totalProductsClient = DB::table('orders')->where('id_user', $user)->sum('quantity');
+        $totalSalesClient = DB::table('orders')->where('id_user', $user)->sum('price_total');
         ////// Artículos adquiridos por cada cliente //////
         $ordersClient = DB::table('orders')->where('id_user', $user)->get();
         $productsClient = array();

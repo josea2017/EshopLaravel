@@ -38,15 +38,17 @@
                                     <td>{{$category->category_root_id}}</td>
                                     <td>{{$category->name}}</td>
                                     <td>
-                                          <a style="text-decoration: none;" class="btn btn-primary" href="categories/edit/{{$category->id}}">
-                                                    Editar
-                                         </a>
-
-                                          <a style="text-decoration: none;" onclick="return confirm('Do you really want to delete?');"  class="btn btn-danger" href="categories/delete/{{ $category->id }}">
-
+                                          <!--
+                                            <a style="text-decoration: none;" onclick="return confirm('¿Esta seguro de eliminar?');"  class="btn btn-danger" href="categories/delete/parametro->number_id">
+                                                    Eliminar
+                                            </a>
+                                          -->
+                                          <a style="text-decoration: none;" class="btn btn-danger" href="categories/delete/{{$category->id}}">
                                                     Eliminar
                                          </a>
-                                         
+                                          <a style="text-decoration: none;" class="btn btn-primary" href="categories/edit/{{$category->id}}">
+                                                    Editar
+                                         </a>  
                                     </td>
                                 </tr>
                             @endforeach
