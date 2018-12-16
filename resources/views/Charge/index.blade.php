@@ -28,6 +28,8 @@
                               <th>DESCRIPCIÓN</th>
                               <th>IMAGEN</th>
                               <th>PRECIO</th>
+                              <th>CANTIDAD</th>
+                              <th>TOTAL</th>
                               <th>
                                 <a class="btn btn-success" name="generar_orden" href="/orders/generateOrder/{{Auth::user()->email}}">Generar orden</a>
                               </th>
@@ -41,6 +43,8 @@
                                     <td>{{$product->description}}</td>
                                     <td><img src="/.../../images/{{$product->image}}"></td>
                                     <td>{{$product->price}}</td>
+                                    <td>{{$product->quantity}}</td>
+                                    <td>{{$product->price * $product->quantity}}</td>
                                     <td>
                                           <a style="text-decoration: none;" class="btn btn-danger" href="/charges/delete/{{$product->id_product}}">
                                               Eliminar
