@@ -11,7 +11,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Ordenes realizadas</div>
+                <div class="card-header">
+                    <img style="width: 45px; height: 45px;" class="card-img-top" src="images/orders.png" alt="Card image cap">
+                    Ordenes realizadas
+                  </div>
 
                 <div class="card-body">
                     @if (session('status'))

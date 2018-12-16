@@ -11,7 +11,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Catalogo</div>
+                <div class="card-header">
+                    <img style="width: 50px; height: 50px;" class="card-img-top" src="images/catalog.png" alt="Card image cap">
+                    Catálogo
+                  </div>
 
                 <div class="card-body">
                     @if (session('status'))
