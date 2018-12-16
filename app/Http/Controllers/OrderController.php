@@ -30,7 +30,7 @@ class OrderController extends Controller
     {
         
         $user = \Auth::user()->email;
-        $orders = DB::table('orders')->select('id_car', 'created_at', DB::raw("SUM(price_product) as sum"))
+        $orders = DB::table('orders')->select('id_car', 'created_at', DB::raw("SUM(price_total) as sum"))
                                      ->where('id_user', $user)
                                      ->groupBy('id_car','created_at')
                                      ->get();
@@ -71,23 +71,27 @@ class OrderController extends Controller
             for ($i=0; $i < $max; $i++) 
             {   
                 $id_car = $charges[$i]->id_car;
-                $id_user = $user;            
+                $id_user = $user;   
+                $quantity = $charges[$i]->quantity;    
                 $id_product = $charges[$i]->id_product;
                 $product = DB::table('products')->where('id_product', $id_product)->get()->first();
                 //$product->price
                 $price = $product->price;
+                $price_total = $charges[$i]->quantity * $price;
                 $order = new Order([
                     'id_car' => $id_car,
                     'id_user' => $id_user,
                     'id_product' => $id_product,
-                    'price_product' => $price
+                    'price_product' => $price,
+                    'quantity' => $quantity,
+                    'price_total' => $price_total
                 ]);
 
                 $stock_mayor_cero = $product->stock;
-                if($stock_mayor_cero >= 1)
+                if($stock_mayor_cero >= $quantity)
                 {
                     array_push($orders, $order);
-                    $stock_mayor_cero = $stock_mayor_cero - 1;
+                    $stock_mayor_cero = $stock_mayor_cero - $quantity;
                     DB::table('products')->where('id_product', $id_product)->update(['stock' => $stock_mayor_cero]);
                     /*DB::table('users')
                     ->where('id', 1)

@@ -18,6 +18,7 @@ class CreateChargesTable extends Migration
             $table->integer('id_car');
             $table->string('id_user');
             $table->string('id_product');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }

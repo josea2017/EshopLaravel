@@ -19,6 +19,8 @@ class CreateOrdersTable extends Migration
             $table->string('id_user');
             $table->string('id_product');
             $table->double('price_product');
+            $table->double('quantity');
+            $table->double('price_total');
             $table->timestamps();
         });
     }
