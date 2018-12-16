@@ -133,7 +133,9 @@ class ChargeController extends Controller
             $max = sizeof($charges);
             for ($i=0; $i < $max; $i++) { 
                 $id_product = $charges[$i]->id_product;
+                $quantity = $charges[$i]->quantity;
                 $product = DB::table('products')->where('id_product', $id_product)->get()->first();
+                $product->quantity = $quantity;
             array_push($productos_en_carro, $product);
             }
            
@@ -155,7 +157,9 @@ class ChargeController extends Controller
             $max = sizeof($charges);
             for ($i=0; $i < $max; $i++) { 
                 $id_product = $charges[$i]->id_product;
+                $quantity = $charges[$i]->quantity;
                 $product = DB::table('products')->where('id_product', $id_product)->get()->first();
+                $product->quantity = $quantity;
             array_push($productos_en_carro, $product);
             }
            

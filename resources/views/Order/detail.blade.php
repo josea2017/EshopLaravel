@@ -27,6 +27,8 @@
                               <th>USUARIO</th>
                               <th>PRODUCTO</th>
                               <th>PRECIO</th>
+                              <th>CANTIDAD</th>
+                              <th>TOTAL</th>
                               <th>FECHA</th>
                             </tr>
                         </thead>
@@ -37,6 +39,8 @@
                                     <td>{{$order->id_user}}</td>
                                     <td>{{$order->name}}</td>
                                     <td>{{$order->price_product}}</td>
+                                    <td>{{$order->quantity}}</td>
+                                    <td>{{$order->price_total}}</td>
                                     <td>{{$order->created_at}}</td>
                                 </tr>
                             @endforeach

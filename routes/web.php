@@ -28,7 +28,7 @@ Route::get('charges/show_charge_user/{id_user}','ChargeController@show_charge_us
 Route::get('charges/show_charge_success','ChargeController@show_charge_success');
 Route::get('charges/delete/{id_product}','ChargeController@delete');
 Route::post('charges/destroy/{id_product}','ChargeController@destroy');
-Route::post('cars/agregar/{id_user}/{id_product}','CarController@agregar');
+Route::post('cars/agregar/{id_user}/{id_product}/','CarController@agregar');
 Route::get('cars/new/{id_user}','CarController@new');
 Route::get('products/edit/{id}','ProductController@edit');
 Route::post('products/edit/{id}','ProductController@update');

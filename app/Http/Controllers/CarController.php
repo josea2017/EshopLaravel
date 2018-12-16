@@ -7,6 +7,7 @@ use App\Car;
 use App\Charge;
 use App\Order;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class CarController extends Controller
 {
@@ -46,14 +47,35 @@ class CarController extends Controller
         return redirect()->route('catalogs.index');
     }
 
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'quantity.required' => 'El campo Cantidad es Requerido',
+            'quantity.max' => 'La Cantidad no puede ser mayor a la del stock'
+        ];
+    }
+
      /**
      * Display the specified resource.
      *
      * @param  int  $id_user
      * @return \Illuminate\Http\Response
      */
-    public function agregar($id_user, $id_product)
+    public function agregar(Request $request, $id_user, $id_product)
     {
+        
+        $stock = DB::table('products')->select('stock')->where('id_product', $id_product)->get();
+        $validator = $this->validate($request, [
+            'quantity' => 'required|numeric|digits_between:1,99|max:'.$stock[0]->stock, 
+
+        ], $this->messages());
+
+
         $id_car = null;
         $id_car = DB::table('cars')->where('id_user', $id_user)->max('id');
         if ($id_car == null) 
@@ -66,7 +88,8 @@ class CarController extends Controller
             $product_of_car = new Charge([
                 'id_car' => $idReturn,
                 'id_user' => $id_user,
-                'id_product' => $id_product
+                'id_product' => $id_product,
+                'quantity' => $request->input('quantity')
             ]);
             $product_of_car->save();
             return redirect()->route('catalogs.index');
@@ -78,7 +101,8 @@ class CarController extends Controller
                 $product_of_car = new Charge([
                 'id_car' => $id_car,
                 'id_user' => $id_user,
-                'id_product' => $id_product
+                'id_product' => $id_product,
+                'quantity' => $request->input('quantity')
                 ]);
                 $product_of_car->save();
                 return redirect()->route('catalogs.index');
@@ -91,7 +115,8 @@ class CarController extends Controller
                 $product_of_car = new Charge([
                     'id_car' => $idReturn,
                     'id_user' => $id_user,
-                    'id_product' => $id_product
+                    'id_product' => $id_product,
+                    'quantity' => $request->input('quantity')
                 ]);
                 $product_of_car->save();
                 return redirect()->route('catalogs.index');

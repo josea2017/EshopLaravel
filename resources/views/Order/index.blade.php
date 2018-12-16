@@ -36,7 +36,7 @@
                                     <td>{{$order->created_at}}</td>
                                     <td>{{$order->sum}}</td>
                                     <td>
-                                        <a style="text-decoration: none;" class="btn btn-primary" href="orders/detail/{{$order->id_car}}">
+                                        <a style="text-decoration: none;" class="btn btn-primary" href="/orders/detail/{{$order->id_car}}">
                                             Detalle
                                         </a>
                                     </td>
