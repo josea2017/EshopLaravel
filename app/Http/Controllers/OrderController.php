@@ -30,6 +30,7 @@ class OrderController extends Controller
     {
         $user = \Auth::user()->email;
         $orders = DB::table('orders')->select('id_car', 'created_at', DB::raw("SUM(price_product) as sum"))
+                                     ->where('id_user', $user)
                                      ->groupBy('id_car','created_at')
                                      ->get();
 
@@ -80,7 +81,17 @@ class OrderController extends Controller
                     'id_product' => $id_product,
                     'price_product' => $price
                 ]);
-                array_push($orders, $order);
+
+                $stock_mayor_cero = $product->stock;
+                if($stock_mayor_cero >= 1)
+                {
+                    array_push($orders, $order);
+                    $stock_mayor_cero = $stock_mayor_cero - 1;
+                    DB::table('products')->where('id_product', $id_product)->update(['stock' => $stock_mayor_cero]);
+                    /*DB::table('users')
+                    ->where('id', 1)
+                    ->update(['votes' => 1]);*/
+                }
             }
             foreach ($orders as $value) 
             {
