@@ -22,6 +22,18 @@ class UserPolicy
     }
 
     /**
+     * Determine whether the user can view the model.
+     *
+     * @param  \App\User  $user
+     * @param  \App\User  $model
+     * @return mixed
+     */
+    public function viewClientHome(User $user)
+    {
+        return $user->role == 'cliente';
+    }
+
+    /**
      * Determine whether the user can create models.
      *
      * @param  \App\User  $user

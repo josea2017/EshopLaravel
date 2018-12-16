@@ -28,6 +28,7 @@ class OrderController extends Controller
      */
     public function index()
     {
+        
         $user = \Auth::user()->email;
         $orders = DB::table('orders')->select('id_car', 'created_at', DB::raw("SUM(price_product) as sum"))
                                      ->where('id_user', $user)
