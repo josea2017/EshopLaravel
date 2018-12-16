@@ -34,7 +34,7 @@
                             </thead>
                         </table>
                          <h5>Artículos adquiridos</h5>
-                         @if(!empty($product))
+                         
                              <table class="table table-hover table-sm" style="text-align: center; margin-top: 5%;" border="0">
                                 <thead class="table_head">
                                 <tr>
@@ -45,15 +45,17 @@
                             </thead>
                             <tbody>
                               @foreach ($productsClient as $product)
+                              @if(!empty($product))
                                     <tr>
                                         <td>{{$product->name}}</td>
                                         <td><img src="images/{{$product->image}}"></td>
                                         <td>{{$product->price}}</td>
                                     </tr>
-                                @endforeach
+                              @endif
+                              @endforeach
                             </tbody>
                             </table>
-                         @endif
+                         
                     @endcan
                     @can('viewClientHome', Auth::user())
                         <table class="table table-hover table-sm" style="text-align: center; margin-top: 0%;" border="0">
@@ -69,7 +71,6 @@
                             </thead>
                         </table>
                         <h5>Artículos adquiridos</h5>
-                        @if(!empty($product))
                            <table class="table table-hover table-sm" style="text-align: center; margin-top: 5%;" border="0">
                               <thead class="table_head">
                               <tr>
@@ -80,15 +81,16 @@
                           </thead>
                           <tbody>
                             @foreach ($productsClient as $product)
+                             @if(!empty($product))
                                   <tr>
                                       <td>{{$product->name}}</td>
                                       <td><img src="images/{{$product->image}}"></td>
                                       <td>{{$product->price}}</td>
                                   </tr>
+                             @endif
                               @endforeach
                           </tbody>
                           </table>
-                        @endif
                     @endcan
                 </div>
             </div>

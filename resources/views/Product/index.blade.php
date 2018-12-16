@@ -8,6 +8,11 @@
            <p>{{ \Session::get('success') }}</p>              
       </div>
    @endif
+   @if(\Session::has('fail'))
+      <div class="alert alert-danger">
+           <p>{{ \Session::get('fail') }}</p>              
+      </div>
+   @endif
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">

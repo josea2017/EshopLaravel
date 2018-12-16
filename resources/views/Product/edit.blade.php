@@ -18,7 +18,7 @@
                                   </td>
                                 </tr>
                                 <tr>
-                                  <td>ID producto:</td><td><input type="text" disabled="true" class="form-control{{ $errors->has('$product->id_product') ? ' is-invalid' : '' }}" value="{{$product->id_product}}"></td>
+                                  <td>ID producto:</td><td><input readonly class="form-control-plaintext" type="text" disabled="true" class="form-control{{ $errors->has('$product->id_product') ? ' is-invalid' : '' }}" value="{{$product->id_product}}"></td>
                                 </tr>
                                 <tr>
                                 <td>Nombre:</td><td><input id="name" type="text" class="form-control{{ $errors->has('$product->name') ? ' is-invalid' : '' }}" name="name" style="width: 100%;" value="{{$product->name}}" required autofocus></td>

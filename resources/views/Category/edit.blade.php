@@ -14,13 +14,13 @@
                             <tr>
                               <td>Categoría ID:</td>
                               <td>
-                                <input type="" disabled="true" class="form-control" name="" value="{{$category->category_id}}">
+                                <input readonly class="form-control-plaintext" type="" disabled="true" class="form-control" name="" value="{{$category->category_id}}">
                               </td>
                             </tr>
                             <tr>
                               <td>Raíz:</td>
                               <td>
-                                <input type="" disabled="true" class="form-control" name="" value="{{$category->category_root_id}}">  
+                                <input readonly class="form-control-plaintext" type="" disabled="true" class="form-control" name="" value="{{$category->category_root_id}}">  
                               </td>
                             </tr>
                             <tr>

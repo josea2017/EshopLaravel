@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\User;
+use App\Product;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -68,10 +70,10 @@ class CategoryController extends Controller
         try {
             $category->save();
         } catch (\Illuminate\Database\QueryException $e) {
-            return redirect()->route('categories.create')->with('fail', 'Duplicate data');  
+            return redirect()->route('categories.create')->with('fail', 'Datos duplicados');  
         }
         
-        return redirect()->route('categories.index')->with('success', 'Data Added'); 
+        return redirect()->route('categories.index')->with('success', 'Datos agregados'); 
 
         
     }
@@ -116,7 +118,7 @@ class CategoryController extends Controller
         $category= \App\Category::find($id);
         $category->name=$request->input('name');
         $category->save();
-        return redirect()->route('categories.index')->with('success', 'Data Updated'); 
+        return redirect()->route('categories.index')->with('success', 'Datos actualizados'); 
         
     }
 
@@ -143,7 +145,30 @@ class CategoryController extends Controller
     {
         $this->authorize('view', User::class);
         $category = \App\Category::find($id);
-        $category->delete();
-        return redirect()->route('categories.index')->with('success', 'Information has been deleted'); 
+        $category_id = $category->category_id;
+        $product = null;
+        $product = DB::table('products')->where('id_category', $category_id)->get()->first();
+        if($product == null){
+            $category->delete();
+            return redirect()->route('categories.index')->with('success', 'La información fue eliminada');
+        }else{
+            return redirect()->route('categories.index')->with('fail', 'No se logró, la categoría tiene productos asignados');
+        } 
     }
 }
+
+
+/*
+        $this->authorize('view', User::class);
+        $product = \App\Product::find($id);
+        $id_product = $product->id_product;
+        $order = null;
+        $order = DB::table('orders')->where('id_product', $id_product)->get()->first();
+        if($order == null){
+            $product->delete();
+            return redirect()->route('products.index')->with('success', 'La información fue eliminada');
+        }else{
+            return redirect()->route('products.index')->with('fail', 'No se logró, el producto se encuentra en compras y es usado en estadísticas');
+        }
+
+*/

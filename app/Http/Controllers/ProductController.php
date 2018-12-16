@@ -14,7 +14,9 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\User;
 use App\Category;
+use App\Order;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -99,7 +101,7 @@ class ProductController extends Controller
             return redirect()->route('products.create')->with('fail', $error->getMessage());  
         }
         
-        return redirect()->route('products.index')->with('success', 'Data Added'); 
+        return redirect()->route('products.index')->with('success', 'Datos agregados'); 
     }
 
     /**
@@ -148,7 +150,7 @@ class ProductController extends Controller
         $product->stock=$request->input('stock');
         $product->price=$request->input('price');
         $product->save();
-        return redirect()->route('products.index')->with('success', 'Data Updated'); 
+        return redirect()->route('products.index')->with('success', 'Datos actualizados'); 
     }
 
     /**
@@ -175,7 +177,14 @@ class ProductController extends Controller
     {
         $this->authorize('view', User::class);
         $product = \App\Product::find($id);
-        $product->delete();
-        return redirect()->route('products.index')->with('success', 'Information has been deleted');
+        $id_product = $product->id_product;
+        $order = null;
+        $order = DB::table('orders')->where('id_product', $id_product)->get()->first();
+        if($order == null){
+            $product->delete();
+            return redirect()->route('products.index')->with('success', 'La información fue eliminada');
+        }else{
+            return redirect()->route('products.index')->with('fail', 'No se logró, el producto se encuentra en compras y es usado en estadísticas');
+        }
     }
 }
