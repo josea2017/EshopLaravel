@@ -20,15 +20,25 @@
                         <table class="table table-hover table-sm" style="text-align: center; margin-top: 0%;" border="0">
                             <thead class="table_head">
                                 <tr>
-                                  <td>Cantidad de clientes registrados:</td>
+
+                                  <td>
+                                      <img style="width: 40px; height: 40px;" class="card-img-top" src="images/clients_count.png" alt="Card image cap">
+                                      Cantidad de clientes registrados:
+                                  </td>
                                   <td>{{$cantClients}}</td>
                                 </tr>
                                 <tr>
-                                  <td>Cantidad de productos vendidos:</td>
+                                  <td>
+                                     <img style="width: 50px; height: 50px;" class="card-img-top" src="images/products_sales.png" alt="Card image cap">
+                                     Cantidad de productos vendidos:
+                                   </td>
                                   <td>{{$cantSaleProducts}}</td>
                                 </tr>
                                 <tr>
-                                  <td>Total en ventas:</td>
+                                  <td>
+                                      <img style="width: 50px; height: 50px;" class="card-img-top" src="images/sales.png" alt="Card image cap">
+                                      Total en ventas:
+                                    </td>
                                   <td>{{$totalSales}}</td>
                                 </tr> 
                             </thead>
@@ -61,11 +71,17 @@
                         <table class="table table-hover table-sm" style="text-align: center; margin-top: 0%;" border="0">
                             <thead class="table_head">
                                 <tr>
-                                  <td>Total de productos adquiridos:</td>
+                                  <td>
+                                      <img style="width: 50px; height: 50px;" class="card-img-top" src="images/total_products_buy.png" alt="Card image cap">
+                                      Total de productos adquiridos:
+                                    </td>
                                   <td>{{$totalProductsClient}}</td>
                                 </tr>
                                 <tr>
-                                  <td>Monto total de compras realizadas:</td>
+                                  <td>
+                                      <img style="width: 50px; height: 50px;" class="card-img-top" src="images/total_buy.png" alt="Card image cap">
+                                      Monto total de compras realizadas:
+                                    </td>
                                   <td>{{$totalSalesClient}}</td>
                                 </tr>
                             </thead>
