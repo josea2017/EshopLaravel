@@ -18,10 +18,19 @@
                               </td>
                             </tr>
                             <tr>
-                              <td>Raíz:</td>
-                              <td>
-                                <input readonly class="form-control-plaintext" type="" disabled="true" class="form-control" name="" value="{{$category->category_root_id}}">  
-                              </td>
+                             <td>Categoría raíz:</td>
+                                  <td>
+                                      <select id="category_root_id" class="form-control{{ $errors->has('category_root_id') ? ' is-invalid' : '' }}" name="category_root_id" style="width: 100%;"  autofocus>
+                                        <option>No aplica</option>
+                                          @foreach ($categories as $category_raiz)
+                                            @if($category_raiz->category_id == $category->category_root_id)
+                                              <option value="{{$category_raiz->category_id}}" selected>{{ $category_raiz->name }}</option>
+                                            @else
+                                              <option value="{{$category_raiz->category_id}}">{{ $category_raiz->name }}</option>
+                                            @endif
+                                          @endforeach
+                                      </select>
+                                  </td>
                             </tr>
                             <tr>
                               <td>Nombre:</td>

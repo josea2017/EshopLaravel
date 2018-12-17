@@ -1,5 +1,6 @@
 #!/usr/bin/python  
 import sys  
+import os
 import configparser
 import psycopg2
 import smtplib
@@ -15,8 +16,9 @@ def revizar_stock(arg1):
     conn = None
     try:
         # Lectura de parametros de conexion
+    	path = os.path.abspath(os.path.dirname(sys.argv[0]))
     	config = configparser.RawConfigParser()
-    	config.read('ConfigFile.properties')
+    	config.read(path + '\\ConfigFile.properties')
         # Conectar a PostgreSql
     	print('Conectando a la base de datos de PostgreSQL...')
     	conn = psycopg2.connect(user = config.get('postgresql', 'user'),

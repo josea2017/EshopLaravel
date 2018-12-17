@@ -45,7 +45,8 @@ class CategoryController extends Controller
     public function create()
     {
         $this->authorize('create', User::class);
-        return view('Category/new');
+        $categories = DB::table('categories')->get();
+        return view('Category/new', ['categories' => $categories]);
     }
 
     /**
@@ -59,12 +60,23 @@ class CategoryController extends Controller
         $this->authorize('view', User::class);
         $this->validate($request, [
             'category_id' => 'required', 
-            'category_root_id' => 'required',
             'name' => 'required'
         ]);
+        /*$category_raiz;
+        if (isset($request->get('category_id')) {
+            $category_raiz = $request->get('category_id');
+        } else {
+            $category_raiz = 'False';
+        }*/
+        if($request->input('category_root_id') == 'No aplica'){
+            $category_root_id = null;
+        }else{
+            $category_root_id = $request->get('category_root_id');
+        }
+
         $category = new Category([
             'category_id' => $request->get('category_id'),
-            'category_root_id' => $request->get('category_root_id'),
+            'category_root_id' =>  $category_root_id,
             'name' => $request->get('name')
         ]);
         try {
@@ -99,7 +111,8 @@ class CategoryController extends Controller
     {
         $this->authorize('view', User::class);
         $category = \App\Category::find($id);
-        return view('Category/edit',compact('category','id'));
+        $categories = \App\Category::orderBy('id', 'asc')->get();
+        return view('Category/edit',compact('category','id', 'categories'));
     }
 
     /**
@@ -117,6 +130,13 @@ class CategoryController extends Controller
         ]);
         $category= \App\Category::find($id);
         $category->name=$request->input('name');
+        if ($request->input('category_root_id') == 'No aplica') {
+            $category->category_root_id = Null;
+        }
+        else{
+            $category->category_root_id=$request->input('category_root_id');
+        }
+
         $category->save();
         return redirect()->route('categories.index')->with('success', 'Datos actualizados'); 
         
@@ -148,13 +168,39 @@ class CategoryController extends Controller
         $category_id = $category->category_id;
         $product = null;
         $product = DB::table('products')->where('id_category', $category_id)->get()->first();
-        if($product == null){
+        if($product == null && $this->verificar_category_root($category) && $this->verificar_si_petenezco_otra_categoria($category))
+        {
             $category->delete();
             return redirect()->route('categories.index')->with('success', 'La información fue eliminada');
         }else{
             return redirect()->route('categories.index')->with('fail', 'No se logró, la categoría tiene productos asignados');
         } 
     }
+
+    public function verificar_category_root($category)
+    {   $value = true;
+        if($category->category_root_id != null)
+        {
+            $value = false;
+
+        }
+        return $value;
+    }
+
+     public function verificar_si_petenezco_otra_categoria($category)
+    {   $value = true;
+        $resultado = null;
+        $resultado = DB::table('categories')->where('category_root_id', $category->category_id)->get()->first();
+        if($resultado != null)
+        {
+            $value = false;
+        }
+        return $value;
+    }
+
+
+
+
 }
 
 

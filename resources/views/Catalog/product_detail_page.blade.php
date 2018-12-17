@@ -2,7 +2,6 @@
 @extends('layouts.app')
 @section('content')
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
 
@@ -13,7 +12,9 @@
                 <form method="POST" action="{{action('CarController@agregar', [Auth::user()->email, $product->id_product])}}">
                     @csrf
                     <div class="card-header">Catálogo detalle del producto 
-              
+                         <div style="float: right;">Precio Total: $ <span id='precio_total'>0</span>
+                  
+                          </div>
                     </div>
                      <table class="table table-hover table-sm" style="text-align: center; margin-top: 0%;" border="0">
                              <thead class="table_head">
@@ -98,28 +99,23 @@
     </div>
 </div>
 <script>
-$(document).ready(function(){
+$(document).ready(function() {
+    calcular_precio_total();
     $('[data-toggle="tooltip"]').tooltip(); 
+
+    
+    $("#quantity").change(function(){
+      calcular_precio_total();
+  });
+
+  function calcular_precio_total(){
+     var total;
+      total= $("#quantity").val() * $('#price').val();
+      $("#precio_total").html(total);
+  }
+
 });
-</script>
-
-<script>
-$(document).ready(function(){
-  var quantity = $('#quantity').val();
-  $('#demo').text(quantity);
-  /*
-
-        $('#p_first').keyup(function(event){
-        if(isNaN(String.fromCharCode(event.which))){
-            var value = $(this).val();
-
-            $(this).val(value.substr(0,value.length-1));
-        }
-
-            var quantity = $('#quantity').val();
-            $('#demo').text(quantity);
-  */
-});
+ 
 </script>
 
 

@@ -31,14 +31,22 @@
                                         </span>
                                     @endif
                                 </tr>
-                                <tr>
-                                  <td>Categoría Raíz:</td><td><input id="category_root_id" type="text" class="form-control{{ $errors->has('category_root_id') ? ' is-invalid' : '' }}" name="category_root_id" style="width: 100%;" value="{{ old('category_root_id') }}" required autofocus></td>
-                                  @if ($errors->has('category_root_id'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('category_root_id') }}</strong>
-                                        </span>
-                                    @endif
+                                 @if(sizeof($categories) == 0)
+                                    <td>Categoría raíz:</td>
+                                    <td>No hay categorías creadas</td>
+                                 @else
+                                 <tr>
+                                  <td>Categoría raíz:</td>
+                                  <td>
+                                      <select id="category_root_id" class="form-control{{ $errors->has('category_root_id') ? ' is-invalid' : '' }}" name="category_root_id" style="width: 100%;"  autofocus>
+                                        <option>No aplica</option>
+                                          @foreach ($categories as $category)
+                                            <option value="{{$category->category_id}}">{{ $category->name }}</option>
+                                          @endforeach
+                                      </select>
+                                  </td>
                                 </tr>
+                                @endif
                                 <tr>
                                   <td>Nombre:</th><td><input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" style="width: 100%;" value="{{ old('name') }}" required autofocus></td>
                                   @if ($errors->has('name'))

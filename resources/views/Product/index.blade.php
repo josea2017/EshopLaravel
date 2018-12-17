@@ -37,7 +37,7 @@
                               <th>IMAGEN</th>
                               <th>STOCK</th>
                               <th>PRECIO</th>
-                              <th>ID CATEGORIA</th>
+                              <th>CATEGORIA</th>
                               <th>
                                 <a class="btn btn-success" name="categoria_nueva" href="{{ url('/products/create') }}">Producto nuevo</a>
                               </th>
@@ -53,7 +53,7 @@
                                     <td><img src="images/{{$product->image}}"></td>
                                     <td>{{$product->stock}}</td>
                                     <td>{{$product->price}}</td>
-                                    <td>{{$product->id_category}}</td>
+                                    <td>{{$product->category_name}}</td>
                                     <td>
                                           <a style="text-decoration: none;" class="btn btn-primary" href="products/edit/{{$product->id}}">
                                                     Editar

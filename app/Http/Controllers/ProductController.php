@@ -38,7 +38,11 @@ class ProductController extends Controller
     public function index()
     {
         $this->authorize('view', User::class);
-        return view('Product/index', ['products' => Product::orderBy('id', 'asc')->get()]);
+
+        $products = DB::table('products')->join('categories', 'products.id_category', '=', 'categories.category_id')->select('products.*', 'categories.name as category_name')->get();
+
+
+        return view('Product/index', ['products' => $products]);
         //return view('Product/index', ['products' => Product::all()]);
         //return view('Category/index', ['categories' => Category::orderBy('id', 'asc')->get()]);
     }
