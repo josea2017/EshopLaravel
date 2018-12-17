@@ -4,10 +4,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<div id="demo">
-   <p>The initial text</p>
-</div>
-
 
 
 <div class="container">
@@ -17,7 +13,7 @@
                 <form method="POST" action="{{action('CarController@agregar', [Auth::user()->email, $product->id_product])}}">
                     @csrf
                     <div class="card-header">Catálogo detalle del producto 
-                      <div style="float: right;">{{$product->price}}</div>
+              
                     </div>
                      <table class="table table-hover table-sm" style="text-align: center; margin-top: 0%;" border="0">
                              <thead class="table_head">
